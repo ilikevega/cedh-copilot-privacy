@@ -3,57 +3,177 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Keep 7 — Privacy Policy</title>
+<title>Keep 7 — every keep counts</title>
+<meta name="description" content="Keep 7 tracks what you kept: your opening hand, every mulligan, and who won. Join the beta.">
 <style>
-  :root { color-scheme: light dark; }
+  :root {
+    --bg: #0B0B0C; --panel: #121110; --raised: #1C1C1E; --hairline: #2C2C2E;
+    --cream: #EFE9DB; --body: rgba(235,235,245,.85); --dim: rgba(235,235,245,.6);
+    --mint: #66D4CF; --mint-text: #003733; --gold: #C89B3C; --gold-bright: #E8C566;
+  }
+  * { box-sizing: border-box; margin: 0; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    max-width: 680px; margin: 0 auto; padding: 32px 20px 80px;
-    line-height: 1.6; color: #1c1c1e; background: #ffffff;
+    background: var(--bg); color: var(--body);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
+    line-height: 1.6;
   }
-  @media (prefers-color-scheme: dark) {
-    body { color: #ebebf5; background: #000000; }
-    a { color: #66d4cf; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  /* faint blueprint grid over the whole page */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(200,155,60,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,155,60,.05) 1px, transparent 1px);
+    background-size: 48px 48px;
   }
-  h1 { font-size: 28px; margin-bottom: 4px; }
-  h2 { font-size: 19px; margin-top: 32px; }
-  .updated { color: #8e8e93; font-size: 14px; }
-  strong { font-weight: 600; }
+  .eyebrow { color: var(--gold-bright); font-size: 13px; font-weight: 700; letter-spacing: 3px; }
+  /* HERO */
+  .hero { display: flex; gap: 48px; align-items: center; padding: 96px 0 72px; flex-wrap: wrap; }
+  .hero-copy { flex: 1 1 420px; }
+  h1 { color: #fff; font-size: clamp(44px, 7vw, 76px); line-height: 1.02; font-weight: 800; letter-spacing: -1px; margin: 18px 0 28px; }
+  .hero p { font-size: 18px; max-width: 54ch; margin-bottom: 18px; }
+  .hero-art { flex: 1 1 380px; min-width: 320px; }
+  .hero-art svg { width: 100%; height: auto; border-radius: 18px; display: block; }
+  .ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 54px; padding: 0 26px; border-radius: 10px;
+    font-size: 14px; font-weight: 800; letter-spacing: 1.5px; text-decoration: none;
+    border: 0; cursor: pointer;
+  }
+  .btn-mint { background: var(--mint); color: var(--mint-text); }
+  .btn-mint:hover { filter: brightness(1.08); }
+  .btn-ghost { background: transparent; color: var(--cream); border: 1px solid var(--hairline); }
+  .btn-ghost:hover { border-color: var(--gold); }
+  /* FEATURES */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; padding: 24px 0 72px; }
+  .card { background: var(--panel); border: 1px solid var(--hairline); border-radius: 16px; padding: 28px; }
+  .card h3 { color: #fff; font-size: 20px; margin: 14px 0 8px; }
+  .card .num { color: var(--gold); font-size: 13px; font-weight: 700; letter-spacing: 2px; }
+  .card p { font-size: 15px; color: var(--dim); }
+  /* FORM */
+  .signup { background: var(--panel); border: 1px solid var(--hairline); border-radius: 20px; padding: 48px 32px; margin-bottom: 72px; text-align: center; }
+  .signup h2 { color: #fff; font-size: clamp(28px, 4vw, 40px); font-weight: 800; margin: 12px 0 10px; }
+  .signup .sub { color: var(--dim); max-width: 46ch; margin: 0 auto 30px; }
+  form { max-width: 460px; margin: 0 auto; text-align: left; }
+  label { display: block; color: var(--dim); font-size: 13px; letter-spacing: 1px; font-weight: 700; margin: 18px 0 8px; }
+  input[type=email] {
+    width: 100%; min-height: 54px; padding: 0 16px; border-radius: 10px;
+    border: 1px solid var(--hairline); background: var(--raised); color: #fff; font-size: 16px;
+  }
+  input[type=email]:focus { outline: 2px solid var(--mint); border-color: transparent; }
+  .platforms { display: flex; gap: 12px; }
+  .platforms label.pill {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 54px; margin: 0; border-radius: 10px; border: 1px solid var(--hairline);
+    background: var(--raised); color: var(--body); font-size: 16px; font-weight: 600;
+    letter-spacing: 0; cursor: pointer;
+  }
+  .platforms input { position: absolute; opacity: 0; }
+  .platforms label.pill:has(input:checked) { background: var(--mint); color: var(--mint-text); border-color: transparent; }
+  .submit { width: 100%; margin-top: 26px; }
+  .fine { color: rgba(235,235,245,.4); font-size: 13px; text-align: center; margin-top: 16px; }
+  footer { border-top: 1px solid var(--hairline); padding: 28px 0 60px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between; color: var(--dim); font-size: 14px; }
+  footer a { color: var(--dim); }
+  footer a:hover { color: var(--mint); }
 </style>
 </head>
-<body>
-<h1>Keep 7 — Privacy Policy</h1>
-<p class="updated">Last updated: July 6, 2026</p>
+<body class="grid-bg">
+<div class="wrap">
 
-<p>Keep 7 is built to work entirely on your device. We designed it so there is nothing to hide, because there is nothing to collect.</p>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">INTRODUCING: KEEP 7</div>
+      <h1>Know which keeps actually win.</h1>
+      <p>Tired of arguing about whether that spicy 6 was a good keep? Your life total app does not remember your opening hand. Neither do you by round three.</p>
+      <p>Keep 7 tracks what you kept, every mulligan at the table, and who won. Then it shows you the truth: your win rate with a tutor in hand, on 2 lands, after a free mull. Scan your hand card by card, right off the table.</p>
+      <div class="ctas">
+        <a class="btn btn-mint" href="#beta">JOIN THE BETA</a>
+        <a class="btn btn-ghost" href="guide.html">CONVINCE ME FIRST</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <!-- the keep, drawn as a blueprint -->
+      <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
+        <rect width="520" height="420" rx="18" fill="#121110"/>
+        <rect x="1" y="1" width="518" height="418" rx="17" fill="none" stroke="#2C2C2E"/>
+        <g stroke="#C89B3C" stroke-width="0.6" opacity="0.35">
+          <line x1="40" y1="0" x2="40" y2="420"/><line x1="480" y1="0" x2="480" y2="420"/>
+          <line x1="0" y1="52" x2="520" y2="52"/><line x1="0" y1="368" x2="520" y2="368"/>
+          <line x1="130" y1="0" x2="130" y2="420"/><line x1="260" y1="0" x2="260" y2="420"/><line x1="390" y1="0" x2="390" y2="420"/>
+          <line x1="0" y1="140" x2="520" y2="140"/><line x1="0" y1="228" x2="520" y2="228"/>
+        </g>
+        <text x="44" y="40" fill="#7D7A70" font-size="11" letter-spacing="2" font-family="monospace">FIG. 7 — THE KEEP</text>
+        <text x="380" y="396" fill="#7D7A70" font-size="10" letter-spacing="1" font-family="monospace">SCALE 1:1 · K7</text>
+        <!-- fan of seven, cream with gold construction arcs -->
+        <g transform="translate(260,300)">
+          <path d="M -170 0 A 170 170 0 0 1 170 0" fill="none" stroke="#C89B3C" stroke-width="0.8" stroke-dasharray="4 5" opacity="0.6"/>
+          <path d="M -120 0 A 120 120 0 0 1 120 0" fill="none" stroke="#C89B3C" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.4"/>
+          <g fill="#EFE9DB" stroke="#121110" stroke-width="4">
+            <g transform="rotate(-54)"><rect x="-26" y="-176" width="52" height="84" rx="7"/></g>
+            <g transform="rotate(-36)"><rect x="-26" y="-176" width="52" height="84" rx="7"/></g>
+            <g transform="rotate(-18)"><rect x="-26" y="-176" width="52" height="84" rx="7"/></g>
+            <g transform="rotate(0)"><rect x="-26" y="-176" width="52" height="84" rx="7"/></g>
+            <g transform="rotate(18)"><rect x="-26" y="-176" width="52" height="84" rx="7"/></g>
+            <g transform="rotate(36)"><rect x="-26" y="-176" width="52" height="84" rx="7"/></g>
+            <g transform="rotate(54)"><rect x="-26" y="-176" width="52" height="84" rx="7"/></g>
+          </g>
+          <circle cx="0" cy="0" r="3" fill="#C89B3C"/>
+          <text x="150" y="-150" fill="#C89B3C" font-size="11" font-family="monospace">×7</text>
+          <text x="-196" y="-40" fill="#C89B3C" font-size="11" font-family="monospace">108°</text>
+        </g>
+        <!-- mint underline accent -->
+        <rect x="200" y="330" width="120" height="4" rx="2" fill="#66D4CF"/>
+        <text x="260" y="356" fill="#EFE9DB" text-anchor="middle" font-size="20" font-family="Georgia, serif">Keep 7</text>
+      </svg>
+    </div>
+  </section>
 
-<h2>What we store, and where</h2>
-<p>Everything you record in Keep 7 — games, decks, opponents, opening hands, mulligans, and results — is stored in a local database <strong>on your phone only</strong>. There is no account, no sign-up, no server, and no cloud copy. If you delete the app, that data is gone with it.</p>
+  <section class="features">
+    <div class="card">
+      <div class="num">01</div>
+      <h3>Log a game in under a minute</h3>
+      <p>Tap your deck, your seat, the table. Scan your hand card by card and the app reads each one on-device, or snap a photo and fill it in later. Nothing is ever required.</p>
+    </div>
+    <div class="card">
+      <div class="num">02</div>
+      <h3>Count keeps, not just wins</h3>
+      <p>Kept 7? Kept 7 after the free mull? Went to 5? Keep 7 remembers every table's mulligans and connects them to results. No other app tracks this.</p>
+    </div>
+    <div class="card">
+      <div class="num">03</div>
+      <h3>Stats that call you out</h3>
+      <p>Win rate with a tutor in hand. On two lands. By seat. Plus your own honest read: was that loss variance, or did you misplay? Your data stays on your phone, and exports to CSV whenever you want it.</p>
+    </div>
+  </section>
 
-<h2>Photos</h2>
-<p>When you photograph your opening hand, the photo is saved into the app's own private storage on your device. <strong>Photos never leave your phone.</strong> They are not uploaded, analyzed remotely, or shared with anyone. The app only accesses the camera or photo library when you tap "Snap it," and only with your permission.</p>
+  <section class="signup" id="beta">
+    <div class="eyebrow">LIMITED BETA</div>
+    <h2>Get on the list.</h2>
+    <p class="sub">Drop your email and your platform. iOS invites go out through TestFlight; Android builds come as a direct download. No spam, no newsletter, just the invite.</p>
+    <form action="https://formsubmit.co/christian.vega.thermofisher@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Keep 7 beta signup">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://ilikevega.github.io/cedh-copilot-privacy/thanks.html">
+      <label for="email">EMAIL</label>
+      <input id="email" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
+      <label>YOUR PHONE</label>
+      <div class="platforms">
+        <label class="pill"><input type="radio" name="platform" value="iOS" required> iPhone</label>
+        <label class="pill"><input type="radio" name="platform" value="Android"> Android</label>
+      </div>
+      <button class="btn btn-mint submit" type="submit">REQUEST AN INVITE</button>
+      <p class="fine">Every keep counts. Even the greedy ones.</p>
+    </form>
+  </section>
 
-<h2>Network use</h2>
-<p>The app makes network requests in exactly two situations, both only when you import a deck:</p>
-<ul>
-  <li><strong>Moxfield</strong> (moxfield.com) — to fetch a deck list you paste a link to.</li>
-  <li><strong>Scryfall</strong> (scryfall.com) — to fetch card details and one piece of card art per deck.</li>
-</ul>
-<p>Both are public, read-only requests. Nothing about you, your games, or your data is sent to either service — only the name or link of the deck you asked to import. Everything fetched is cached on your device so the app works fully offline afterward.</p>
+  <footer>
+    <div>Keep 7 · every keep counts</div>
+    <div>
+      <a href="guide.html">Beta guide</a> &nbsp;·&nbsp;
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
 
-<h2>Analytics and tracking</h2>
-<p>There are none. No analytics libraries, no advertising identifiers, no crash reporters, no tracking of any kind.</p>
-
-<h2>Sharing and export</h2>
-<p>The CSV export feature packages your game history into a file and hands it to the iOS share sheet. Where it goes from there — Files, email, a spreadsheet app — is entirely your choice. The app never sends it anywhere on its own.</p>
-
-<h2>Children</h2>
-<p>Keep 7 does not collect personal information from anyone, including children.</p>
-
-<h2>Changes</h2>
-<p>If a future version of the app changes any of the above (for example, optional tournament syncing), this policy will be updated first and the change will be opt-in.</p>
-
-<h2>Contact</h2>
-<p>Questions about this policy: <a href="mailto:christian.vega.thermofisher@gmail.com">christian.vega.thermofisher@gmail.com</a></p>
+</div>
 </body>
 </html>
