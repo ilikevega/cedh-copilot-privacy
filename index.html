@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Keep 7 — every keep counts</title>
 <meta name="description" content="Keep 7 tracks what you kept: your opening hand, every mulligan, and who won. Join the beta.">
+<meta property="og:title" content="Keep 7 — know which keeps actually win">
+<meta property="og:description" content="The Commander app that remembers your opening hand. Track keeps, mulligans, and wins. Join the beta.">
+<meta property="og:image" content="https://ilikevega.github.io/cedh-copilot-privacy/og-card.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root {
     --bg: #0B0B0C; --panel: #121110; --raised: #1C1C1E; --hairline: #2C2C2E;
@@ -91,8 +96,12 @@
         <a class="btn btn-ghost" href="guide.html">CONVINCE ME FIRST</a>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <!-- the keep, drawn as a blueprint -->
+    <div class="hero-art">
+      <img src="hero-blueprint.jpg" alt="Seven cream cards fanned in an arc over a charcoal blueprint drawing"
+           style="width:100%; height:auto; border-radius:18px; border:1px solid var(--hairline); display:block;">
+    </div>
+    <div class="hero-art" aria-hidden="true" style="display:none">
+      <!-- previous hand-drawn blueprint, kept as fallback -->
       <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
         <rect width="520" height="420" rx="18" fill="#121110"/>
         <rect x="1" y="1" width="518" height="418" rx="17" fill="none" stroke="#2C2C2E"/>
@@ -164,6 +173,14 @@
       <button class="btn btn-mint submit" type="submit">REQUEST AN INVITE</button>
       <p class="fine">Every keep counts. Even the greedy ones.</p>
     </form>
+  </section>
+
+  <section style="display:flex; gap:18px; flex-wrap:wrap; justify-content:center; text-align:center; color:var(--dim); font-size:14px; padding-bottom:64px;">
+    <span>No account, nothing to log into.</span>
+    <span style="color:var(--gold)">·</span>
+    <span>No analytics, no telemetry, no SDKs phoning home.</span>
+    <span style="color:var(--gold)">·</span>
+    <span>Photos stay on your phone.</span>
   </section>
 
   <footer>
