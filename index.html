@@ -159,10 +159,7 @@
     <div class="eyebrow">LIMITED BETA</div>
     <h2>Get on the list.</h2>
     <p class="sub">Drop your email and your platform. iOS invites go out through TestFlight; Android builds come as a direct download. No spam, no newsletter, just the invite.</p>
-    <form action="https://formsubmit.co/may.zheng.media@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Keep 7 beta signup">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://ilikevega.github.io/cedh-copilot-privacy/thanks.html">
+    <form id="beta-form">
       <label for="email">EMAIL</label>
       <input id="email" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
       <label>YOUR PHONE</label>
@@ -170,9 +167,46 @@
         <label class="pill"><input type="radio" name="platform" value="iOS" required> iPhone</label>
         <label class="pill"><input type="radio" name="platform" value="Android"> Android</label>
       </div>
-      <button class="btn btn-mint submit" type="submit">REQUEST AN INVITE</button>
-      <p class="fine">Every keep counts. Even the greedy ones.</p>
+      <button class="btn btn-mint submit" type="submit" id="beta-submit">REQUEST AN INVITE</button>
+      <p class="fine" id="beta-note">Every keep counts. Even the greedy ones.</p>
     </form>
+    <div id="beta-done" style="display:none">
+      <div class="eyebrow" style="margin-top:8px">✓ REQUEST RECEIVED</div>
+      <h2 style="font-size:28px">You're on the list.</h2>
+      <p class="sub">The invite lands in your inbox when the next wave goes out.</p>
+    </div>
+    <script>
+      // background submit: the page never navigates, nothing in the address bar
+      var ENDPOINT = "https://formsubmit.co/ajax/may.zheng.media@gmail.com";
+      document.getElementById("beta-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var f = e.target;
+        var btn = document.getElementById("beta-submit");
+        btn.disabled = true;
+        btn.textContent = "SENDING…";
+        fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            email: f.email.value,
+            platform: (f.platform.value || ""),
+            _subject: "Keep 7 beta signup",
+            _captcha: "false",
+          }),
+        })
+          .then(function (r) { return r.json(); })
+          .then(function () {
+            f.style.display = "none";
+            document.getElementById("beta-done").style.display = "block";
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.textContent = "REQUEST AN INVITE";
+            document.getElementById("beta-note").textContent =
+              "Something hiccuped. Try again in a moment.";
+          });
+      });
+    </script>
   </section>
 
   <section style="display:flex; gap:18px; flex-wrap:wrap; justify-content:center; text-align:center; color:var(--dim); font-size:14px; padding-bottom:64px;">
